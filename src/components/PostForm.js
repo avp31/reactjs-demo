@@ -32,6 +32,7 @@ const PostForm = (props) => {
     return (
         <div className="p-2 my-2 border mx-auto">
             <h4 className="text-primary text-center">Create Post</h4>
+            <h1></h1>
             <form className="container was-validated" onSubmit={(event) => { handleSubmit(event) }}>
                 <div className="mb-3 mt-3">
                     <label htmlFor="title" className="form-label">Title:</label>
