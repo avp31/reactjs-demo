@@ -6,6 +6,7 @@ const AllPost = (props) => {
 
     <div className="p-2 my-2 border mx-auto">
       {console.log("post array are ::", props.posts)}
+      <h6>authentication branch</h6>
       <h4 className="text-primary text-center">All Posts</h4>
       {props.posts.map((post) => (
 
