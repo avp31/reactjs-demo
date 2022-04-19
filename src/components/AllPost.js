@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Post from "./Post";
-import EditComponent from "./EditComponent";
+import EditComponent from "./EditPost";
 const AllPost = (props) => {
   return (
 
