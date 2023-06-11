@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 
 const Post = (props) => {
@@ -23,7 +22,10 @@ const Post = (props) => {
   return (
     <div className="mt-3">
       <div className="card mx-auto">
-        <div className="card-body">
+        <div className="card-body" key={props.post.id}   style={{
+              backgroundColor: props.themeColor.backgroundColor,
+              color: props.themeColor.color,
+            }}>
           <h4 className="card-title">{props.post.title}</h4>
           <p className="card-text">{props.post.message}</p>
           <button type="button" className="btn btn-info float-start" onClick={editPost}>Edit</button>
