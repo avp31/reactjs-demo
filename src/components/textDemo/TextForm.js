@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 const TextForm = (props) => {
-  const [textVal, setText] = useState("");
+  const [textVal, setText] = useState('');
 
   const handleClick = (event) => {
     event.preventDefault();
     if (textVal.length > 0) {
       let conVal = textVal.toUpperCase();
       setText(conVal);
-      //props.showAlert("success", "Uppercase Done")
+      props.showAlert("success", "Uppercase Done")
       console.log("textbox value", textVal);
     }
   };
@@ -35,14 +35,13 @@ const TextForm = (props) => {
 
   const handleChange = (event) => {
     //console.log("text val are", event.target.value);
-    let newText = event.target.value;
-    setText(newText);
+    setText(event.target.value);
   };
 
   const handleExtraSpaces = () => {
     let newText = textVal.split(/[ ]+/);
     setText(newText.join(" "));
-    //props.showAlert("success", "Extra spaces removed")
+    props.showAlert("success", "Extra spaces removed")
   };
 
   return (
@@ -67,6 +66,7 @@ const TextForm = (props) => {
           ></textarea>
         </div>
         <button
+          id="myButton"
           className="btn btn-primary mx-2"
           onClick={handleClick}
           style={{ backgroundColor: props.selectedColor }}

@@ -8,6 +8,7 @@ import Alert from "./components/textDemo/Alert";
 import ColorPalette from "./components/ColorPallet";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NoPage from "./components/textDemo/NoPage";
+import Demo from "./components/textDemo/Demo";
 const App = () => {
   const [mode, setdMode] = useState("light");
   const [alert, setAlert] = useState(null, null);
@@ -20,6 +21,10 @@ const App = () => {
   const handleColorSelection = (color) => {
     setSelectedColor(color);
   };
+
+  // const myAlert = (message) => {
+  //   alert(message);
+  // };
 
   const showAlert = (type, message) => {
     //console.log(`Received parameters: ${type}, ${message}`);
@@ -36,7 +41,7 @@ const App = () => {
     if (mode === "dark") {
       setdMode("light");
       document.body.style.backgroundColor = "white";
-      showAlert("success", "Light Mode Enable");
+      showAlert("success","Light Mode Enable");
       setThemeColor({
         color: "black",
         backgroundColor: "white",
@@ -61,13 +66,15 @@ const App = () => {
           themeColor={themeColor}
           selectedColor={selectedColor}
         />
-        <Alert alert={alert} />
+        <Alert alert={alert}/>
+        {/* <Demo showAlert={showAlert} /> */}
+    
         <ColorPalette
           handleColorSelection={handleColorSelection}
           selectedColor={selectedColor}
         />
         <Switch>
-          <Route
+          {/* <Route
             exact
             path="/"
             component={(props) => (
@@ -79,28 +86,41 @@ const App = () => {
                 selectedColor={selectedColor}
               />
             )}
+          /> */}
+          <Route
+            exact
+            path="/"
+            render={() => <TextForm
+              mode={mode}
+              showAlert={showAlert}
+              themeColor={themeColor}
+              selectedColor={selectedColor}
+            />}
           />
           <Route
             path="/about"
-            component={(props) => (
+            render={() => (
               <About
-                {...props}
                 selectedColor={selectedColor}
                 themeColor={themeColor}
               />
             )}
           />
           <Route
+            path="/demo"
+            render={() => <Demo showAlert={showAlert}/>}
+          />
+
+          <Route
             path="/postform"
-            component={(props) => (
+            render={(props) => (
               <PostForm
-                {...props}
                 selectedColor={selectedColor}
                 themeColor={themeColor}
               />
             )}
           />
-          <Route path="*" component={NoPage} />
+          <Route path="*" render={NoPage} />
         </Switch>
       </Router>
     </>

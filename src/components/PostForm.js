@@ -16,7 +16,7 @@ const PostForm = (props) => {
     const data = {
       id: new Date(),
       ...inputs,
-      editing: false,
+      editing: false
     };
     console.log(" the input are:", data);
     props.dispatch({
