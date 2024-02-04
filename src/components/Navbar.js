@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ColorPalette from "./ColorPallet";
 
 const Navbar = (props) => {
   return (
@@ -22,7 +23,7 @@ const Navbar = (props) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link" aria-current="page" to="/">
                 Home
               </Link>
             </li>
@@ -37,6 +38,10 @@ const Navbar = (props) => {
               </Link>
             </li>
           </ul>
+          <ColorPalette
+            handleColorSelection={props.handleColorSelection}
+            selectedColor={props.selectedColor}
+          />
           <div className="form-check form-switch mx-3" style={{color: props.themeColor.color}}>
             <input
               className="form-check-input"
@@ -45,12 +50,14 @@ const Navbar = (props) => {
               style={{backgroundColor:props.selectedColor}}
               id="flexSwitchCheckDefault"
               onClick={props.togleMode}
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
             />
             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
               Dark Mode
             </label>
           </div>
-          <form className="d-flex">
+          {/* <form className="d-flex">
             <input
               className="form-control me-2"
               type="search"
@@ -60,7 +67,7 @@ const Navbar = (props) => {
             <button className="btn btn-primary" type="submit" style={{backgroundColor:props.selectedColor}}>
               Search
             </button>
-          </form>
+          </form> */}
           
         </div>
       </div>

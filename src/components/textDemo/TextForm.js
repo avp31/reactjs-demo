@@ -2,6 +2,10 @@ import React, { useState } from "react";
 
 const TextForm = (props) => {
   const [textVal, setText] = useState('');
+  let modeStyle = {
+    backgroundColor: props.themeColor.backgroundColor,
+    color: props.themeColor.color,
+  }
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -14,7 +18,7 @@ const TextForm = (props) => {
   };
   const countWordsWithoutSpaces = (textVal) => {
     // Split the text by spaces
-    let words = textVal.split(" ");
+    let words = textVal.split(/\s+/);
     // Count non-empty words
     let count = 0;
     for (let i = 0; i < words.length; i++) {
@@ -38,27 +42,27 @@ const TextForm = (props) => {
     setText(event.target.value);
   };
 
-  const handleExtraSpaces = () => {
+  const handleExtraSpaces = (event) => {
+    event.preventDefault();
+    if (textVal.length > 0) {
     let newText = textVal.split(/[ ]+/);
     setText(newText.join(" "));
     props.showAlert("success", "Extra spaces removed")
+    }
   };
 
   return (
     <div
-      className="container mt-5 p-2 my-2 border mx-auto"
+      className="container w-50 mt-5 p-2 my-2 border mx-auto"
       style={{ color: props.themeColor.color }}
     >
       <div className="container">
-        <div className="mb-2 mt-2 text-center">
-          <h5>Enter Text to Convert</h5>
+        <div className="m-3 text-left">
+          <h5>Word Counter, Converter, Extra Spaces Remover</h5>
 
           <textarea
             className="form-control"
-            style={{
-              backgroundColor: props.themeColor.backgroundColor,
-              color: props.themeColor.color,
-            }}
+            style={modeStyle}
             id="mybox"
             rows="8"
             value={textVal}
@@ -66,17 +70,23 @@ const TextForm = (props) => {
           ></textarea>
         </div>
         <button
+          //disabled={textVal.length === 0}
           id="myButton"
-          className="btn btn-primary mx-2"
+          className="btn btn-primary mx-2 my-1"
           onClick={handleClick}
           style={{ backgroundColor: props.selectedColor }}
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
         >
-          Convert To UpperCase
+          Convert To Uppercase
         </button>
         <button
-          className="btn btn-primary"
+          //disabled={textVal.length === 0}
+          className="btn btn-primary mx-2 my-1"
           onClick={handleExtraSpaces}
           style={{ backgroundColor: props.selectedColor }}
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
         >
           Remove Extra Spaces
         </button>

@@ -17,6 +17,7 @@ const ColorPalette = (props) => {
             backgroundColor: color,
             width:"30px",
             height:"30px",
+            margin:"2px",
             border: color === props.selectedColor ? '1px solid black' : 'none',
           }}
           onClick={() => {

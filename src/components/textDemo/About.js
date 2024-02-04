@@ -26,7 +26,7 @@ export default function About(props) {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 w-50">
     <div className="container"  style={{ color: props.themeColor.color }}>
       <h3>About US</h3>
     </div>
